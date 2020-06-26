@@ -135,6 +135,21 @@ describe('SatisMeter', function() {
       });
     });
 
+    describe('#track', function() {
+      beforeEach(function() {
+        analytics.stub(window, 'satismeter');
+      });
+
+      it('should send an event', function() {
+        analytics.track('User Created Subscription');
+        analytics.called(
+          window.satismeter,
+          'track',
+          'User Created Subscription'
+        );
+      });
+    });
+
     describe('#page', function() {
       beforeEach(function() {
         analytics.stub(window, 'satismeter');

@@ -60,6 +60,17 @@ SatisMeter.prototype.identify = function(identify) {
 };
 
 /**
+ * Track.
+ *
+ * @api public
+ * @param {Track} track
+ */
+
+SatisMeter.prototype.track = function(track) {
+  window.satismeter('track', track.event());
+};
+
+/**
  * Page.
  *
  * @api public
