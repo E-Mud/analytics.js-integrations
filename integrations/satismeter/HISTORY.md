@@ -1,3 +1,10 @@
+2.1.0 / 2020-07-03
+==================
+
+  * Support for track calls
+  * Support for group calls
+  * Send page name and properties on page calls
+
 2.0.1 / 2017-04-11
 ==================
 
