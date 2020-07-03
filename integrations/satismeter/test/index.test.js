@@ -64,7 +64,7 @@ function testSuite(satismeterOptions, writeKey) {
         analytics.stub(window, 'satismeter');
       });
 
-      it('should send apiKey and user id', function() {
+      it('should send writeKey and user id', function() {
         analytics.identify('id');
         analytics.called(window.satismeter, {
           writeKey: writeKey,
@@ -159,7 +159,7 @@ function testSuite(satismeterOptions, writeKey) {
         analytics.stub(window, 'satismeter');
       });
 
-      it('should send apiKey, user id and page properties', function() {
+      it('should send writeKey, user id and page properties', function() {
         analytics.user().id('id');
         analytics.page('Pricing', {
           customProperty: 'Example'
@@ -178,6 +178,25 @@ function testSuite(satismeterOptions, writeKey) {
             url: window.location.href,
             customProperty: 'Example'
           }
+        });
+      });
+    });
+
+    describe('#group', function() {
+      beforeEach(function() {
+        analytics.stub(window, 'satismeter');
+      });
+
+      it('should send group id and traits', function() {
+        analytics.user().id('id');
+        analytics.group('groupId', {
+          employees: 50,
+          industry: 'Technology'
+        });
+
+        analytics.called(window.satismeter, 'group', 'groupId', {
+          employees: 50,
+          industry: 'Technology'
         });
       });
     });

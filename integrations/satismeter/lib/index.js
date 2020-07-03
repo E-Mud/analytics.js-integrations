@@ -85,3 +85,14 @@ SatisMeter.prototype.page = function(page) {
     page: page.properties()
   });
 };
+
+/**
+ * Group.
+ *
+ * @api public
+ * @param {Group} group
+ */
+
+SatisMeter.prototype.group = function(group) {
+  window.satismeter('group', group.groupId(), group.properties());
+};
