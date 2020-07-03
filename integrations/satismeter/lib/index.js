@@ -82,7 +82,8 @@ SatisMeter.prototype.page = function(page) {
     writeKey: this.options.apiKey || this.options.token,
     userId: this.analytics.user().id(),
     type: 'page',
-    page: page.properties()
+    name: page.name(),
+    properties: page.properties()
   });
 };
 

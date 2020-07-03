@@ -169,7 +169,8 @@ function testSuite(satismeterOptions, writeKey) {
           writeKey: writeKey,
           userId: 'id',
           type: 'page',
-          page: {
+          name: 'Pricing',
+          properties: {
             name: 'Pricing',
             path: window.location.pathname,
             referrer: window.document.referrer,
