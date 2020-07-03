@@ -67,7 +67,7 @@ SatisMeter.prototype.identify = function(identify) {
  */
 
 SatisMeter.prototype.track = function(track) {
-  window.satismeter('track', track.event());
+  window.satismeter('track', track.event(), track.properties());
 };
 
 /**
@@ -77,10 +77,11 @@ SatisMeter.prototype.track = function(track) {
  * @param {Page} page
  */
 
-SatisMeter.prototype.page = function() {
+SatisMeter.prototype.page = function(page) {
   window.satismeter({
     writeKey: this.options.apiKey || this.options.token,
     userId: this.analytics.user().id(),
-    type: 'page'
+    type: 'page',
+    page: page.properties()
   });
 };

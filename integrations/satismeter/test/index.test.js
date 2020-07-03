@@ -140,12 +140,19 @@ describe('SatisMeter', function() {
         analytics.stub(window, 'satismeter');
       });
 
-      it('should send an event', function() {
-        analytics.track('User Created Subscription');
+      it('should send event with properties', function() {
+        analytics.track('User Created Subscription', {
+          planPrice: 2000,
+          planId: 'Example Plan'
+        });
         analytics.called(
           window.satismeter,
           'track',
-          'User Created Subscription'
+          'User Created Subscription',
+          {
+            planPrice: 2000,
+            planId: 'Example Plan'
+          }
         );
       });
     });
@@ -155,13 +162,25 @@ describe('SatisMeter', function() {
         analytics.stub(window, 'satismeter');
       });
 
-      it('should send apiKey and user id', function() {
+      it('should send apiKey, user id and page properties', function() {
         analytics.user().id('id');
-        analytics.page('Pricing');
+        analytics.page('Pricing', {
+          customProperty: 'Example'
+        });
+
         analytics.called(window.satismeter, {
           writeKey: options.apiKey,
           userId: 'id',
-          type: 'page'
+          type: 'page',
+          page: {
+            name: 'Pricing',
+            path: window.location.pathname,
+            referrer: window.document.referrer,
+            search: window.location.search,
+            title: window.document.title,
+            url: window.location.href,
+            customProperty: 'Example'
+          }
         });
       });
     });
@@ -303,13 +322,25 @@ describe('SatisMeter - legacy setup', function() {
         analytics.stub(window, 'satismeter');
       });
 
-      it('should send token and user id', function() {
+      it('should send apiKey, user id and page properties', function() {
         analytics.user().id('id');
-        analytics.page('Pricing');
+        analytics.page('Pricing', {
+          customProperty: 'Example'
+        });
+
         analytics.called(window.satismeter, {
           writeKey: options.token,
           userId: 'id',
-          type: 'page'
+          type: 'page',
+          page: {
+            name: 'Pricing',
+            path: window.location.pathname,
+            referrer: window.document.referrer,
+            search: window.location.search,
+            title: window.document.title,
+            url: window.location.href,
+            customProperty: 'Example'
+          }
         });
       });
     });
